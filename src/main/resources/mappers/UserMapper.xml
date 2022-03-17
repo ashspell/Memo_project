@@ -23,9 +23,26 @@
  		
  		
  		)
- 		
- 		
- 		
  	</insert>
+ 	
+ 	<select id = "selectUser" parameterType = "map"
+ 	resultType = "com.ashspell.memo.user.model.User">
+ 		SELECT
+ 			`id`
+ 			, `loginId`
+ 			, `password`
+ 			, `name`
+ 			, `email`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`loginID` = #{loginID}
+ 			AND 
+ 		
+ 	
+ 	
+ 	</select>
  
  </mapper>

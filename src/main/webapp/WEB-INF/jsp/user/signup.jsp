@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,7 @@
 </head>
 <body>
 	<div id = "wrap" >
-		<header class = "d-flex align-items-center">
-			<h1 class = "ml-3">Memo</h1>
-		</header>
+		<c:import url = "/WEB-INF/jsp/include/header.jsp" />
 		
 		<section class = "d-flex justify-content-center">
 			<div class = "join-box my-5">
@@ -33,9 +32,7 @@
 			</div>
 		</section>
 		
-		<footer class = "d-flex justify-content-center align-items-center">
-			Copyright 2022. memo all rights reserved.
-		</footer>
+		<c:import url = "/WEB-INF/jsp/include/footer.jsp" />
 		
 	</div>
 	
