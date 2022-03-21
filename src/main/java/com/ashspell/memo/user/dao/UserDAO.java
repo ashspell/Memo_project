@@ -1,6 +1,7 @@
 package com.ashspell.memo.user.dao;
 
 import org.apache.ibatis.annotations.Param;
+
 import org.springframework.stereotype.Repository;
 
 import com.ashspell.memo.user.model.User;

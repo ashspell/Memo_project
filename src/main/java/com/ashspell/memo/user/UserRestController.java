@@ -44,13 +44,13 @@ public class UserRestController {
 	
 	@PostMapping("/sign_in")
 	public Map<String, String> signIn(
-			@RequestParam("loginID") String loginID,
+			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
 			HttpServletRequest request) {
 		
 		
 		
-		 User user = userBO.getUser(loginID, password);
+		 User user = userBO.getUser(loginId, password);
 		 Map<String ,String> result = new HashMap<>();
 		 if(user != null) {
 			 //로그인 성공
@@ -59,7 +59,7 @@ public class UserRestController {
 			 HttpSession session = request.getSession();
 			 
 			 // id,loginID, name
-			 session.setAttribute("userID",user.getId());
+			 session.setAttribute("userId",user.getId());
 			 session.setAttribute("userloginID",user.getLoginID());
 			 session.setAttribute("userName", user.getName());
 			 

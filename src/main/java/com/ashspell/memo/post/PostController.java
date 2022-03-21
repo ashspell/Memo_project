@@ -1,0 +1,54 @@
+package com.ashspell.memo.post;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ashspell.memo.post.bo.PostBO;
+import com.ashspell.memo.post.model.Post;
+
+@Controller
+@RequestMapping("/post")
+public class PostController {
+	
+	@Autowired
+	private PostBO postBO;
+
+	@GetMapping("/create_view")
+	public String createView() {
+		return "post/create";
+	}
+	
+	@GetMapping("/list_view")
+	public String listView(HttpServletRequest request, Model model) {
+		
+		HttpSession = request.getSession();
+		
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<Post> postList  = postBO.getPostList(userId);
+		
+		model.addAttribute(postList);
+		
+		return "post/list";
+	}
+	
+	@GetMapping("detail_view")
+	public String detailView(@RequestParam("id") int id, Model model ){
+		
+		Post post = postBO.getPost(id);
+		
+		model.addAttribute(post);
+		
+		return "post/detail";
+	}
+	
+	
+}
