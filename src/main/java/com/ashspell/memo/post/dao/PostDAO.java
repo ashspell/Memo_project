@@ -2,6 +2,7 @@ package com.ashspell.memo.post.dao;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,8 @@ public interface PostDAO {
 	public int insertPost(
 			@Param("userId") int userId,
 			@Param("subject") String subject, 
-			@Param("content") String content); 
+			@Param("content") String content,
+			@Param("filePath") String filePath); 
 		
 	
 

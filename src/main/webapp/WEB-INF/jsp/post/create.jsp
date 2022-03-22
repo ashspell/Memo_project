@@ -25,7 +25,7 @@
 				<input type ="text" class = "form-control col-11 mt-3" id = "titleInput">	
 			</div>
 			<textarea class = "form-control mt-3" rows ="5" id = "contentInput"></textarea>
-			<input type = "file" class ="mt-3">
+			<input type = "file" class ="mt-3" id = "fileInput">
 			<div class ="d-flex justify-content-between">
 				<a href = "/post/list_view" class = "btn btn-info mt-3">목록으로</a>
 				<button type = "button" class = "btn btn-success mt-3" id = "saveBtn">저장</button>
@@ -61,13 +61,22 @@
 					return;
 				}
 				
+				var formData = new FormData();
+				formData.append("subject", title);
+				formData.append("content", content);
+				formData.append("file", $("#fileInput")[0].files[0]);
+				
+				
 				$.ajax({
 					type : "post",
 					url : "/post/create",
-					data :{"subject":title, "content":content},
+					data :formData ,
+					enctype:"multipart/form-data", //파일 업로드 필수 옵션
+					processData:false,				//파일 업로드 필수 옵션
+					contentType:false,             //파일 업로드 필수 옵션
 					success:function(data) {
 						if(data.result == "success") {
-							alert("메모쓰기 성공");
+						alert("메모쓰기 성공");
 						}else {
 							alert("메모쓰기 실패");
 						}

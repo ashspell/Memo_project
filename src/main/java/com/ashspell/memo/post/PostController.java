@@ -3,6 +3,7 @@ package com.ashspell.memo.post;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ public class PostController {
 	
 	@Autowired
 	private PostBO postBO;
+	
 
 	@GetMapping("/create_view")
 	public String createView() {
@@ -29,13 +31,13 @@ public class PostController {
 	@GetMapping("/list_view")
 	public String listView(HttpServletRequest request, Model model) {
 		
-		HttpSession = request.getSession();
+		 HttpSession session = request.getSession();
 		
 		int userId = (Integer)session.getAttribute("userId");
 		
 		List<Post> postList  = postBO.getPostList(userId);
 		
-		model.addAttribute(postList);
+		model.addAttribute("postList", postList);
 		
 		return "post/list";
 	}
@@ -45,7 +47,7 @@ public class PostController {
 		
 		Post post = postBO.getPost(id);
 		
-		model.addAttribute(post);
+		model.addAttribute("post", post);
 		
 		return "post/detail";
 	}

@@ -2,10 +2,12 @@ package com.ashspell.memo.post.bo;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ashspell.memo.common.FileManagerService;
 import com.ashspell.memo.post.dao.PostDAO;
 import com.ashspell.memo.post.model.Post;
 
@@ -18,7 +20,12 @@ public class PostBO {
 	
 	public int addPost(int userId, String subject, String content, MultipartFile file) {
 		
-		return postDAO.insertPost(userId, subject, content);
+		
+		//파일을 저장하고, 경로를 만들어 낸다
+		String filePath  = FileManagerService.saveFile(userId, file);
+		
+		
+		return postDAO.insertPost(userId, subject, content, filePath);
 	}
 	
 	public List<Post> getPostList(int userId) {
@@ -28,4 +35,6 @@ public class PostBO {
 	public Post getPost(int id) {
 		return postDAO.selectPost(id);
 	}
+	
+	
 }

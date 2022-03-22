@@ -25,6 +25,9 @@
 			</div>
 			<textarea class = "form-control mt-3" rows ="5" id = "contentInput">${post.content}</textarea>
 			
+			<c:if test = "${not empty post.imagePath }">
+			<img src= "${post.imagePath }">
+			</c:if>
 			
 			<div class ="d-flex justify-content-between">
 				<div>
