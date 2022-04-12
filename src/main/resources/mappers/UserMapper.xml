@@ -39,7 +39,7 @@
  			`user`
  		WHERE
  			`loginID` = #{loginID}
- 			AND 
+ 			AND `password` = #{password}
  		
  	
  	

@@ -67,7 +67,9 @@
  	<delete id = "deletePost" parameterType = "int">
  		DELETE FROM
  			`post`
- 
+ 		WHERE
+ 			`id` = #{postId}
+ 			AND `uerId` = #{userId}
  	
  	</delete>
  
